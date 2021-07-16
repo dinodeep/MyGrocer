@@ -10,17 +10,17 @@ import os
 
 class Pantry:
 
-    def __init__(self, name: str, file: str):
-        self.name = name
+    def __init__(self, file: str):
         self.file = file
-        self.ingredients: "list[Ingredient]" = []
 
-        # load ingredients from file (create file if it does not exists)
+        # load pantry from file (create file and init pantry if file does not exists)
         if os.path.exists(file):
-            self.ingredients = self.load()
+            self.load()
         else:
             with open(file, "w") as f:
-                json.load([], f, indent=4)
+                json.dump([], f, indent=4)
+            self.name = ""
+            self.ingredients = []
 
     def __str__(self) -> str:
         ''' pretty print pantry '''
@@ -39,12 +39,14 @@ class Pantry:
 
         # data from a file must be a list of ingredients converted to dicts
         with open(self.file, "r") as f:
-            ingredients = json.load(f)
-        self.ingredients = [Ingredient.from_json(ingredient) for ingredient in ingredients]
+            data = json.load(f)
+        self.name = data["name"]
+        self.ingredients = [Ingredient.from_json(ingredient) for ingredient in data["ingredients"]]
 
     def save(self):
         ''' saves pantry ingredients to its file '''
 
-        data = [ingredient.to_json() for ingredient in self.ingredients]
+        data = {"name": self.name,
+                "ingredients": [ingredient.to_json() for ingredient in self.ingredients]}
         with open(self.file, "w") as f:
             json.dump(data, f, indent=4)
