@@ -2,7 +2,7 @@
 recipe.py implements the recipe class
 '''
 
-from ingredient import Ingredient
+from classes.ingredient import Ingredient
 
 
 class Recipe:
@@ -13,15 +13,15 @@ class Recipe:
         self.instructions = instructions
 
     def __str__(self) -> str:
-        border = "=" * 30 + "\n"
+        border = "+ " + "=" * 30 + "\n"
         title = "+ " + self.name + "\n"
 
-        ingredients = "Ingredients\n"
+        ingredients = "+ Ingredients\n"
         for i, ingred in enumerate(self.ingredients):
-            ingredients += f"{i}. {str(ingred)}\n"
+            ingredients += f"+ {i}. {str(ingred)}\n"
 
-        instructions = "Instructions\n"
+        instructions = "+ Instructions\n"
         for i, instr in enumerate(self.instructions):
-            instructions += f"{i}. {instr}\n"
+            instructions += f"+ {i}. {instr}\n"
 
         return border + title + border + ingredients + border + instructions + border
