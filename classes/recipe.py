@@ -20,7 +20,7 @@ class Recipe:
 
         # string ingredients together
         ingredients = "+ INGREDIENTS\n"
-        for i, ingredient in enumerate(self.ingredients):
+        for ingredient in self.ingredients:
             ingredients += f"+ - {str(ingredient)}\n"
 
         # string instructions together

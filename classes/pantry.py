@@ -13,12 +13,12 @@ class Pantry:
     def __init__(self, name: str, file: str):
         self.name = name
         self.file = file
+        self.ingredients: "list[Ingredient]" = []
 
         # load ingredients from file (create file if it does not exists)
         if os.path.exists(file):
             self.ingredients = self.load()
         else:
-            self.ingredients = []
             with open(file, "w") as f:
                 json.load([], f, indent=4)
 
@@ -29,7 +29,7 @@ class Pantry:
         title = "| " + "PANTRY: " + self.name + "\n"
 
         ingredients_str = "| INGREDIENTS\n"
-        for i, ingredient in enumerate(self.ingredients):
+        for ingredient in self.ingredients:
             ingredients_str += f"| - {str(ingredient)}\n"
 
         return border + title + border + ingredients_str + border
