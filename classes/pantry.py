@@ -2,6 +2,8 @@
 pantry.py implements the pantry class that allows for device storage of a list of ingredients
 '''
 
+from classes.ingredient import Ingredient
+
 import json
 import os
 
@@ -20,18 +22,29 @@ class Pantry:
             with open(file, "w") as f:
                 json.load([], f, indent=4)
 
-    def load():
+    def __str__(self) -> str:
+        ''' pretty print pantry '''
+
+        border = "=" * 30
+        title = "| " + "PANTRY: " + self.name + "\n"
+
+        ingredients_str = "| INGREDIENTS\n"
+        for i, ingredient in enumerate(self.ingredients):
+            ingredients_str += f"| - {str(ingredient)}\n"
+
+        return border + title + border + ingredients_str + border
+
+    def load(self):
         ''' sets pantry ingredients to that from file '''
-        pass
 
-    def save():
+        # data from a file must be a list of ingredients converted to dicts
+        with open(self.file, "r") as f:
+            ingredients = json.load(f)
+        self.ingredients = [Ingredient.from_json(ingredient) for ingredient in ingredients]
+
+    def save(self):
         ''' saves pantry ingredients to its file '''
-        pass
 
-    def add(ingredient):
-        ''' adds ingredient to the list of pantry ingredients '''
-        pass
-
-    def remove(ingredient):
-        ''' attempts to remove ingredient from pantry, raises Error if ingredient not in pantry ingredients '''
-        pass
+        data = [ingredient.to_json() for ingredient in self.ingredients]
+        with open(self.file, "w") as f:
+            json.dump(data, f, indent=4)

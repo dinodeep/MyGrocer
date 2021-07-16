@@ -14,16 +14,17 @@ class Recipe:
 
     def __str__(self) -> str:
         ''' converting recipe to string '''
+
         border = "+ " + "=" * 30 + "\n"
-        title = "+ " + self.name + "\n"
+        title = "+ RECIPE: " + self.name + "\n"
 
         # string ingredients together
-        ingredients = "+ Ingredients\n"
-        for i, ingred in enumerate(self.ingredients):
-            ingredients += f"+ {i}. {str(ingred)}\n"
+        ingredients = "+ INGREDIENTS\n"
+        for i, ingredient in enumerate(self.ingredients):
+            ingredients += f"+ - {str(ingredient)}\n"
 
         # string instructions together
-        instructions = "+ Instructions\n"
+        instructions = "+ INSTRUCTIONS\n"
         for i, instr in enumerate(self.instructions):
             instructions += f"+ {i}. {instr}\n"
 
