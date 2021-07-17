@@ -4,6 +4,7 @@ and interaction with recipes
 '''
 
 from classes.recipe import Recipe
+from classes.list_viewer import ListViewer
 
 import json
 import os
@@ -49,4 +50,5 @@ class Cookbook:
 
     def interact(self):
         ''' start interaction sim with cookbook '''
-        pass
+        lv = ListViewer(self.recipes, self.name)
+        lv.interact()
