@@ -18,7 +18,7 @@ class Pantry:
             self.load()
         else:
             with open(file, "w") as f:
-                json.dump([], f, indent=4)
+                json.dump({"name": "", "ingredients": []}, f, indent=4)
             self.name = ""
             self.ingredients = []
 
