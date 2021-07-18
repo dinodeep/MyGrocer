@@ -16,7 +16,7 @@ class Recipe:
         return self.name == other.name and self.ingredients == other.ingredients
 
     def __hash__(self) -> int:
-        return hash((self.name, self.ingredients))
+        return hash((self.name, tuple(self.ingredients)))
 
     def __str__(self) -> str:
         ''' converting recipe to string '''
@@ -43,5 +43,5 @@ class Recipe:
 
     def to_json(self):
         return {"name": self.name,
-                "ingredients": self.ingredients,
+                "ingredients": [i.to_json() for i in self.ingredients],
                 "instructions": self.instructions}

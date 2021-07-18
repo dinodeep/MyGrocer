@@ -46,7 +46,7 @@ class Cookbook:
         unique_recipes = list(set(self.recipes))
         data = {"name": self.name,
                 "recipes": [r.to_json() for r in unique_recipes]}
-        with open(self.file, "r") as f:
+        with open(self.file, "w") as f:
             json.dump(data, f, indent=4)
 
     def interact(self):
