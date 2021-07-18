@@ -43,8 +43,9 @@ class Cookbook:
 
     def save(self):
         ''' saves current cookbook to its file '''
+        unique_recipes = list(set(self.recipes))
         data = {"name": self.name,
-                "recipes": [r.to_json() for r in self.recipes]}
+                "recipes": [r.to_json() for r in unique_recipes]}
         with open(self.file, "r") as f:
             json.dump(data, f, indent=4)
 

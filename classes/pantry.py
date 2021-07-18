@@ -45,8 +45,8 @@ class Pantry:
 
     def save(self):
         ''' saves pantry ingredients to its file '''
-
+        unique_ingredients = list(set(self.ingredients))
         data = {"name": self.name,
-                "ingredients": [ingredient.to_json() for ingredient in self.ingredients]}
+                "ingredients": [ingredient.to_json() for ingredient in unique_ingredients]}
         with open(self.file, "w") as f:
             json.dump(data, f, indent=4)
