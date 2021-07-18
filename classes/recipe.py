@@ -12,6 +12,12 @@ class Recipe:
         self.ingredients = ingredients
         self.instructions = instructions
 
+    def __eq__(self, other: object) -> bool:
+        return self.name == other.name and self.ingredients == other.ingredients
+
+    def __hash__(self) -> int:
+        return hash((self.name, self.ingredients))
+
     def __str__(self) -> str:
         ''' converting recipe to string '''
 
