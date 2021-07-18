@@ -34,6 +34,16 @@ class Pantry:
 
         return border + title + border + ingredients_str + border
 
+    def add(self, ingredient):
+        ''' add ingredient to pantry '''
+        if ingredient not in self.ingredients:
+            self.ingredients.append(ingredient)
+
+    def remove(self, ingredient):
+        ''' remove ingredient from pantry '''
+        if ingredient in self.ingredients:
+            self.ingredients.remove(ingredient)
+
     def load(self):
         ''' sets pantry ingredients to that from file '''
 

@@ -34,6 +34,16 @@ class Cookbook:
 
         return border + border + title + border + recipes_str + border
 
+    def add(self, recipe):
+        ''' add recipe to the cookbook '''
+        if recipe not in self.recipes:
+            self.recipes.append(recipe)
+
+    def remove(self, recipe):
+        ''' remove recipe from the cookbook '''
+        if recipe in self.recipes:
+            self.recipes.remove(recipe)
+
     def load(self):
         ''' loads a cookbook from the cookbook's file '''
         with open(self.file, "r") as f:
