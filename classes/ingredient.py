@@ -22,7 +22,8 @@ class Ingredient:
 
     @classmethod
     def from_json(cls, d):
-        return cls(**d)
+        name = d["name"]
+        return cls(name)
 
     def to_json(self):
         return {"name": self.name}

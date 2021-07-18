@@ -39,7 +39,10 @@ class Recipe:
 
     @classmethod
     def from_json(cls, d):
-        return cls(**d)
+        name = d["name"]
+        ingredients = [Ingredient.from_json(i) for i in d["ingredients"]]
+        instructions = d["instructions"]
+        return cls(name, ingredients, instructions)
 
     def to_json(self):
         return {"name": self.name,

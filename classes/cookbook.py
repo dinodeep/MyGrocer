@@ -26,7 +26,7 @@ class Cookbook:
     def __str__(self):
         ''' pp a cookbook '''
         border = "-" * 30 + "\n"
-        title = "COOKBOOK: " + self.name
+        title = "COOKBOOK: " + self.name + "\n"
 
         recipes_str = ""
         for recipe in self.recipes:

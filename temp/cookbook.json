@@ -1,0 +1,51 @@
+{
+    "name": "all pepper",
+    "recipes": [
+        {
+            "name": "garlic-pepper mix",
+            "ingredients": [
+                {
+                    "name": "garlic"
+                },
+                {
+                    "name": "pepper"
+                }
+            ],
+            "instructions": [
+                "blend garlic and pepper together"
+            ]
+        },
+        {
+            "name": "onion-pepper",
+            "ingredients": [
+                {
+                    "name": "onion"
+                },
+                {
+                    "name": "pepper"
+                }
+            ],
+            "instructions": [
+                "slam onion and pepper together"
+            ]
+        },
+        {
+            "name": "rotli",
+            "ingredients": [
+                {
+                    "name": "dough"
+                },
+                {
+                    "name": "water"
+                }
+            ],
+            "instructions": [
+                "add little bit of water to dough",
+                "knead dough",
+                "add more water to dough",
+                "knead dough",
+                "repeat until dough is firm and help together"
+            ]
+        }
+    ]
+}
