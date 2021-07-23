@@ -31,6 +31,7 @@ class Recipe:
 
         border = "+ " + "=" * 30 + "\n"
         title = "+ RECIPE: " + self.name + "\n"
+        subtitle = "+ Last eaten " + self.last_eaten.isoformat() + "\n"
 
         # string ingredients together
         ingredients = "+ INGREDIENTS\n"
@@ -43,7 +44,7 @@ class Recipe:
             instructions += f"+ {i}. {instr}\n"
 
         #  put everything together
-        return border + title + border + ingredients + border + instructions + border
+        return border + title + subtitle + border + ingredients + border + instructions + border
 
     @classmethod
     def from_json(cls, d):
