@@ -3,14 +3,22 @@ recipe.py implements the recipe class
 '''
 
 from classes.ingredient import Ingredient
+import datetime
 
 
 class Recipe:
 
-    def __init__(self, name: str, ingredients: "list[Ingredient]", instructions: "list[str]"):
+    def __init__(self, name: str, ingredients: "list[Ingredient]", instructions: "list[str]", date: str = ""):
         self.name = name
         self.ingredients = ingredients
         self.instructions = instructions
+
+        try:
+            self.last_eaten = datetime.date.fromisoformat(date)
+        except:
+            if date != "":
+                print("Date provided not in ISO format")
+            self.last_eaten = datetime.date.today()
 
     def __eq__(self, other: object) -> bool:
         return self.name == other.name and self.ingredients == other.ingredients
@@ -42,9 +50,11 @@ class Recipe:
         name = d["name"]
         ingredients = [Ingredient.from_json(i) for i in d["ingredients"]]
         instructions = d["instructions"]
-        return cls(name, ingredients, instructions)
+        last_eaten = d["last_eaten"]
+        return cls(name, ingredients, instructions, last_eaten)
 
     def to_json(self):
         return {"name": self.name,
                 "ingredients": [i.to_json() for i in self.ingredients],
-                "instructions": self.instructions}
+                "instructions": self.instructions,
+                "last_eaten": self.last_eaten.isoformat()}
