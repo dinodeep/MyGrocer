@@ -13,6 +13,16 @@ def clear():
     os.system("clear")
 
 
+def isisoformat(date_str):
+    ''' returns True if the date_str is isoformat 'YYYY-MM-DD', False otherwise '''
+    # parts[0] = "YYYY", parts[1] = "MM", parts[2] = "DD"
+    parts = date_str.split("-")
+    return len(parts) == 3 and \
+        len(parts[0]) == 4 and parts[0].isnumeric() and \
+        len(parts[1]) == 2 and parts[1].isnumeric() and 1 <= int(parts[1]) <= 12 and \
+        len(parts[2]) == 2 and parts[2].isnumeric() and 1 <= int(parts[2]) <= 31
+
+
 class Grocer:
 
     def __init__(self, cookbook: Cookbook):
@@ -25,16 +35,17 @@ class Grocer:
 
         title = f"Recipes from {self.cookbook.name}"
         border = "=" * len(title)
+        sorted_recipes = sorted(self.cookbook.recipes, key=lambda recipe: recipe.last_eaten)
 
         print(title)
         print(border)
-        for i, recipe in enumerate(self.cookbook.recipes):
-            print(f"{i + 1}. {recipe.name}")
+        for i, recipe in enumerate(sorted_recipes):
+            print(f"{i + 1:>2}. {recipe.name:12} {recipe.last_eaten.isoformat()}")
         print("\n" * 2)
 
         print(border)
         print("Current Plan")
-        for recipe, date in sorted(plan, key=lambda _, d: d):
+        for recipe, date in sorted(plan, key=lambda tup: tup[1]):
             print(f"\t- {recipe.name} ({date.isoformat()})")
         print("\n" * 2)
 
@@ -43,21 +54,27 @@ class Grocer:
     def update(self):
         ''' asks for user input to choose the recipe and provide a date and parse it '''
 
+        def well_formated(plan) -> bool:
+            return len(plan) == 2 and plan[0].isnumeric() and 1 <= int(plan[0]) <= len(self.cookbook.recipes) and isisoformat(plan[1])
+
         print("Enter the number of the recipe and date in YYYY-MM-DD format (type DONE to finish planning)")
         print("Example: 3 2021-04-09")
 
-        s = []
+        plan = []
         prompt = "Choose recipe and date: "
-        while len(s) != 2:
+        while True:
             s = input(prompt)
+            plan = s.strip().split(" ")
             if s == "DONE":
                 return False, None, None
-            plan = input(prompt).strip().split(" ")
+            if well_formated(plan):
+                break
             prompt = "Try again (num YYYY-MM-DD): "
 
         recipe_idx, date_str = plan
 
-        recipe = self.cookbook.recipes[str(recipe_idx) - 1]
+        sorted_recipes = sorted(self.cookbook.recipes, key=lambda recipe: recipe.last_eaten)
+        recipe = sorted_recipes[int(recipe_idx) - 1]
         date = datetime.date.fromisoformat(date_str)
 
         return True, recipe, date
@@ -71,12 +88,12 @@ class Grocer:
         '''
 
         # sort based on date
-        plan = sorted(plan, key=lambda _, d: d)
+        plan = sorted(plan, key=lambda tup: tup[1])
 
         # make a list[(date string, list[recipe names])] so unique dates are found
-        merged_plan = [[plan[0][1], [plan[0][0].name]]]
+        merged_plan = [[plan[0][1].isoformat(), [plan[0][0].name]]]
         for recipe, date in plan[1:]:
-            if date == merged_plan[-1][0]:
+            if date.isoformat() == merged_plan[-1][0]:
                 merged_plan[-1][1].append(recipe.name)
             else:
                 merged_plan.append([date.isoformat(), [recipe.name]])
@@ -99,13 +116,13 @@ class Grocer:
         grocery_list = []
         for ingredient in ingredients:
             # get (recipe, date) pairs where ingredient is in recipe and convert to string
-            ingredient_plan = list(filter(lambda recipe, _: ingredient in recipe.ingredients, plan))
+            ingredient_plan = list(filter(lambda plan_item: ingredient in plan_item[0].ingredients, plan))
             plan_list = [f"({recipe.name}, {date.isoformat()})" for recipe, date in ingredient_plan]
             grocery_list.append([ingredient.name, plan_list])
 
         with open(grocery_list_file, "w") as f:
             for ingredient_name, plan_list in grocery_list:
-                f.write(f"{ingredient_name} - {', '.join(plan_list)}\n")
+                f.write(f"{ingredient_name:15} - {', '.join(plan_list)}\n")
 
     def plan(self, recipes_file, grocery_list_file):
         ''' recipes_file and grocery_list_file must be .txt files '''
@@ -114,10 +131,11 @@ class Grocer:
         plan = []
 
         # adding loop until all recipes exhausted or done
-        is_planning = True
-        while is_planning:
+        while True:
             self.view(plan)
             is_planning, recipe, date = self.update()
+            if not is_planning:
+                break
             plan.append((recipe, date))
 
         # if the no plan dont make files
