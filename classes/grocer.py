@@ -124,7 +124,8 @@ class Grocer:
         if len(plan) == 0:
             return
 
+        # TODO: update the cookbook to new dates
+
         # pp the chosen data to files
-        self.store_recipes()
-        # recipes_file has each line with a date dash recipes that are comma seperated (sorted by date)
-        # grocery_list_file has each line with ingredient name dash (recipe, date) pairs that are comma seperated
+        self.write_plan(recipes_file, plan)
+        self.write_grocery_list(grocery_list_file, plan)

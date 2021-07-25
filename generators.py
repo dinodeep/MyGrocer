@@ -66,9 +66,3 @@ def randcookbook(filename, name, num_recipes):
 
     c.save()
     return c
-
-
-os.system("rm -r temp; mkdir temp")
-randpantry("temp/p1.json", "p1", 5)
-c = randcookbook("temp/cb1.json", "cb1", 7)
-c.interact()
