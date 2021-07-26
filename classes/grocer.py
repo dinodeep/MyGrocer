@@ -79,13 +79,13 @@ class Grocer:
         print(title)
         print(border)
         for i, recipe in enumerate(sorted_recipes):
-            print(f"{i + 1:>2}. {recipe.name:12} {recipe.last_eaten.isoformat()}")
+            print(f"{i + 1:>2}. {recipe.name:15} {recipe.last_eaten.isoformat()}")
         print("\n" * 2)
 
         print(border)
         print("Current Plan")
         for recipe, date in sorted(plan, key=lambda tup: tup[1]):
-            print(f"\t- {recipe.name} ({date.isoformat()})")
+            print(f"\t- {recipe.name:15} ({date.isoformat()})")
         print("\n" * 2)
 
         print(border)
@@ -102,15 +102,13 @@ class Grocer:
         print("Example: 3 2021-04-09")
 
         plan = []
-        prompt = "Choose recipe and date: "
         while True:
-            s = input(prompt)
+            s = input("Choose recipe and date: ")
             plan = s.strip().split(" ")
             if s == "DONE":
                 return False, None, None
             if well_formated(plan):
                 break
-            prompt = "Try again (num YYYY-MM-DD): "
 
         recipe_idx, date_str = plan
 
