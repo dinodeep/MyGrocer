@@ -53,7 +53,7 @@ def convertdate(date_str):
         return date
 
     if isdayformat(date_str):
-        day_idx = day_str.index(date_str)
+        day_idx = day_str.index(date_str.lower())
         today_idx = today.weekday()
         day_delta = day_idx - today_idx
         day_delta = day_delta if day_delta >= 0 else day_delta + 7
