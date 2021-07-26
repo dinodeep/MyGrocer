@@ -98,7 +98,7 @@ class Grocer:
                 convertdate(plan[1]) is not None
 
         print("Enter the number of the recipe and date format (type DONE to finish planning)")
-        print("The date can be: YYYY-MM-DD, MM-DD, or the first three letters of a day (ex: Mon or Wed)")
+        print("The date can be: YYYY-MM-DD, MM-DD, or the first three letters of a day (ex: 2021-09-23, 09-23, Thu)")
         print("Example: 3 2021-04-09")
 
         plan = []
