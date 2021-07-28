@@ -25,7 +25,7 @@ class Pantry:
     def __str__(self) -> str:
         ''' pretty print pantry '''
 
-        border = "=" * 30
+        border = "=" * 30 + "\n"
         title = "| " + "PANTRY: " + self.name + "\n"
 
         ingredients_str = "| INGREDIENTS\n"
