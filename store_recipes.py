@@ -20,11 +20,11 @@ import sys
 
 def add_recipe(cookbook: Cookbook, recipe_lines: "list[str]", pantry: Pantry):
     # parse name and date strings
-    recipe_name = re.sub("RECIPE:", "", recipe_lines[0], re.IGNORECASE).strip()
-    date_str = re.sub("DATE:", "", recipe_lines[1], re.IGNORECASE).strip()
+    recipe_name = " ".join(recipe_lines[0].split(" ")[1:])
+    date_str = " ".join(recipe_lines[1].split(" ")[1:])
 
     # get list of ingredients in pantry
-    ingredients = re.sub("INGREDIENTS:", "", recipe_lines[2], re.IGNORECASE).strip().split(",")
+    ingredients = " ".join(recipe_lines[2].split(" ")[1:]).split(",")
     ingredients = [Ingredient(ing.strip().lower()) for ing in ingredients]
     ingredients = [ing for ing in ingredients if ing in pantry.ingredients]
 
@@ -37,25 +37,25 @@ def add_recipe(cookbook: Cookbook, recipe_lines: "list[str]", pantry: Pantry):
 args = sys.argv
 recipes_file = args[1]
 pantry_file = args[2]
-cookbook_file = args[4]
+cookbook_file = args[3]
 
 # create the cookbook
 cookbook = Cookbook(cookbook_file)
 if len(args) > 4:
-    cookbook.name = args[5]
+    cookbook.name = args[4]
 
 # load the pantry
 pantry = Pantry(pantry_file)
 
 # parse the recipes file and store into the cookbook (terminate if ingredient not found)
-with open(recipes_file) as f:
+with open(recipes_file, "r") as f:
     lines = f.readlines()
-    lines = [line for line in lines if line.strip() != ""]
+    lines = [line.strip() for line in lines if line.strip() != ""]
 
     # get start and end lines of recipes
     start_lines = [i for i, line in enumerate(lines) if line.lower().startswith("recipe")]
     start_lines.append(len(lines))
-    recipe_segments = [[start_lines[i], start_lines[i + 1]] for i in range(len(start_lines) - 2)]
+    recipe_segments = [[start_lines[i], start_lines[i + 1]] for i in range(len(start_lines) - 1)]
     for start, end in recipe_segments:
         add_recipe(cookbook, lines[start:end], pantry)
 

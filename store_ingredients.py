@@ -23,7 +23,7 @@ if len(args) > 3:
     pantry.name = args[3]
 
 # open the file for ingredients and load each ingredient into the pantry
-with open(ingredients_file) as f:
+with open(ingredients_file, "r") as f:
     lines = f.readlines()
     for line in lines:
         name = line.strip().lower()
