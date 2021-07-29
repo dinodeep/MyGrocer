@@ -40,7 +40,7 @@ def remove_item():
 
     print("===============================================")
     for idx, ingredient in enumerate(pantry.ingredients):
-        print(f"\t{(idx + 1):>2}. {ingredient}")
+        print(f"{(idx + 1):>2}. {ingredient}")
     print("===============================================")
 
     print("===============================================")
