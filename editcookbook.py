@@ -1,6 +1,9 @@
+from classes.pantry import Pantry
 from classes.recipe import Recipe
 from classes.cookbook import Cookbook
+from classes.grocer import isisoformat
 
+import datetime
 import os
 
 
@@ -63,7 +66,49 @@ def remove_item(cookbook):
 
 
 def add_item(cookbook):
-    pass
+
+    def display_add(recipe):
+        clear()
+        print(f"Recipe to add to the cookbook: {cookbook.name}\n")
+        print(recipe)
+
+    recipe = Recipe("", [], [])
+
+    # ask for name
+    display_add(recipe)
+    recipe.name = input("Enter recipe name: ").strip()
+
+    # ask for date last eaten
+    display_add(recipe)
+    while True:
+        date_str = input("Enter date last eaten (YYYY-MM-DD): ").strip().lower()
+        if isisoformat(date_str):
+            break
+    recipe.date = datetime.date.fromisoformat(date_str)
+
+    # ask for pantry and ingredients from there
+    display_add(recipe)
+    pantry_file = input("Enter the pantry file to load ingredients from: ")
+    pantry = Pantry(pantry_file)
+    while True:
+        display_add(recipe)
+        print(pantry)
+        name = input("Enter ingredient to add (q to stop): ")
+        if name.lower() != "q":
+            same_ingredients = [i for i in pantry.ingredients if i.name == name]
+            if len(same_ingredients) > 0:
+                pantry.ingredients.append(same_ingredients[0])
+        else:
+            break
+
+    # ask for instructions
+    while True:
+        display_add(recipe)
+        s = input("Enter instruction (q to stop): ").strip()
+        if s.lower() != "q":
+            recipe.instructions.append(s)
+        else:
+            break
 
 
 def editcookbook():
