@@ -66,7 +66,7 @@ def add_item(cookbook):
     pass
 
 
-def main():
+def editcookbook():
     # ask and load cookbook with JSON file to change
     cookbook_file = input("Enter the cookbook file: ")
     cookbook = Cookbook(cookbook_file)
@@ -89,4 +89,4 @@ def main():
     cookbook.save()
 
 
-main()
+editcookbook()
