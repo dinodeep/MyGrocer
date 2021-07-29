@@ -93,3 +93,5 @@ while True:
         add_item()
     elif command == "quit":
         break
+
+pantry.save()
