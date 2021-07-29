@@ -43,7 +43,7 @@ def remove_item(cookbook):
 
     clear()
 
-    # empty cookbook
+    # empty cookbook - quit recipe removal
     if len(cookbook.recipes) == 0:
         return
 
@@ -69,7 +69,7 @@ def remove_item(cookbook):
         remove_item(cookbook)
 
 
-def add_item(cookbook, pantry_file=""):
+def add_item(cookbook, pantry_file):
 
     def display_add(recipe):
         clear()
@@ -92,8 +92,6 @@ def add_item(cookbook, pantry_file=""):
 
     # ask for pantry and ingredients from there
     display_add(recipe)
-    if pantry_file == "":
-        pantry_file = input("Enter the pantry file to load ingredients from: ")
     pantry = Pantry(pantry_file)
     while True:
         display_add(recipe)
@@ -118,9 +116,9 @@ def add_item(cookbook, pantry_file=""):
     cookbook.recipes.append(recipe)
 
 
-def editcookbook():
+def editcookbook(cookbook_file, pantry_file):
     # ask and load cookbook with JSON file to change
-    cookbook_file = input("Enter the cookbook file: ")
+
     cookbook = Cookbook(cookbook_file)
 
     # while loop asking for edit
@@ -134,11 +132,13 @@ def editcookbook():
         elif command == "remove":
             remove_item(cookbook)
         elif command == "add":
-            add_item(cookbook)
+            add_item(cookbook, pantry_file)
         elif command == "quit":
             break
 
     cookbook.save()
 
 
-editcookbook()
+pantry_file = input("Enter the pantry file: ")
+cookbook_file = input("Enter the cookbook file: ")
+editcookbook(cookbook_file, pantry_file)

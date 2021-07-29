@@ -34,6 +34,7 @@ def remove_item(pantry):
 
     clear()
 
+    # empty pantry - quit ingredient removal
     if len(pantry.ingredients) == 0:
         return
 
@@ -78,9 +79,8 @@ def add_item(pantry):
         add_item(pantry)
 
 
-def editpantry():
-    # ask and load pantry with JSON file to change
-    pantry_file = input("Enter the pantry file: ")
+def editpantry(pantry_file):
+    # load pantry with JSON file to change
     pantry = Pantry(pantry_file)
 
     # while loop asking for edit
@@ -101,4 +101,5 @@ def editpantry():
     pantry.save()
 
 
-editpantry()
+pantry_file = input("Enter the pantry file: ")
+editpantry(pantry_file)
