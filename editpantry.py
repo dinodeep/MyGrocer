@@ -4,10 +4,6 @@ from classes.pantry import Pantry
 
 import os
 
-# ask and load pantry with JSON file to change
-pantry_file = input("Enter the pantry file: ")
-pantry = Pantry(pantry_file)
-
 
 def clear(): os.system("clear")
 
@@ -28,13 +24,13 @@ def prompt():
     return input("Enter command: ").strip().lower()
 
 
-def edit_name():
+def edit_name(pantry):
     display(pantry)
     name = input("Enter pantry name: ")
     pantry.name = name
 
 
-def remove_item():
+def remove_item(pantry):
 
     clear()
 
@@ -46,7 +42,7 @@ def remove_item():
     print("===============================================")
     print("REMOVE commands are below")
     print("<number> - enter number of ingredient to remove")
-    print("stop     - exit the pantry editor")
+    print("stop     - stop removing ingredients")
     print("===============================================")
 
     command = input("Enter command: ").strip().lower()
@@ -60,13 +56,13 @@ def remove_item():
         remove_item()
 
 
-def add_item():
+def add_item(pantry):
     display(pantry)
 
     print("===============================================")
     print("ADD commands are below")
     print("<name>   - enter the name of ingredient to add ")
-    print("stop     - exit the pantry editor")
+    print("stop     - stop adding ingredients")
     print("===============================================")
 
     command = input("Enter command: ").strip().lower()
@@ -79,19 +75,27 @@ def add_item():
         add_item()
 
 
-# while loop asking for edit
-# make edit, break if necessary
-while True:
-    display(pantry)
+def main():
+    # ask and load pantry with JSON file to change
+    pantry_file = input("Enter the pantry file: ")
+    pantry = Pantry(pantry_file)
 
-    command = prompt()
-    if command == "name":
-        edit_name()
-    elif command == "remove":
-        remove_item()
-    elif command == "add":
-        add_item()
-    elif command == "quit":
-        break
+    # while loop asking for edit
+    # make edit, break if necessary
+    while True:
+        display(pantry)
 
-pantry.save()
+        command = prompt()
+        if command == "name":
+            edit_name(pantry)
+        elif command == "remove":
+            remove_item(pantry)
+        elif command == "add":
+            add_item(pantry)
+        elif command == "quit":
+            break
+
+    pantry.save()
+
+
+main()
