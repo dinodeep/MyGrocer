@@ -13,7 +13,7 @@ def clear(): os.system("clear")
 def display(cookbook):
     clear()
     print("===============================================")
-    print("RECIPES:")
+    print(f"RECIPES from {cookbook.name}:")
 
     for recipe in sorted(cookbook.recipes, key=lambda r: r.last_eaten):
         print(f"{recipe.name:15} {recipe.last_eaten}")
@@ -43,6 +43,10 @@ def remove_item(cookbook):
 
     clear()
 
+    # empty cookbook
+    if len(cookbook.recipes) == 0:
+        return
+
     print("===============================================")
     for idx, recipe in enumerate(cookbook.recipes):
         print(f"{(idx + 1):>2}. {recipe.name}")
@@ -62,14 +66,14 @@ def remove_item(cookbook):
         ingredient = cookbook.recipes[idx]
         cookbook.remove(ingredient)
 
-        remove_item()
+        remove_item(cookbook)
 
 
-def add_item(cookbook):
+def add_item(cookbook, pantry_file=""):
 
     def display_add(recipe):
         clear()
-        print(f"Recipe to add to the cookbook: {cookbook.name}\n")
+        print(f"Recipe to add to the {cookbook.name}:\n")
         print(recipe)
 
     recipe = Recipe("", [], [])
@@ -84,11 +88,12 @@ def add_item(cookbook):
         date_str = input("Enter date last eaten (YYYY-MM-DD): ").strip().lower()
         if isisoformat(date_str):
             break
-    recipe.date = datetime.date.fromisoformat(date_str)
+    recipe.last_eaten = datetime.date.fromisoformat(date_str)
 
     # ask for pantry and ingredients from there
     display_add(recipe)
-    pantry_file = input("Enter the pantry file to load ingredients from: ")
+    if pantry_file == "":
+        pantry_file = input("Enter the pantry file to load ingredients from: ")
     pantry = Pantry(pantry_file)
     while True:
         display_add(recipe)
@@ -97,7 +102,7 @@ def add_item(cookbook):
         if name.lower() != "q":
             same_ingredients = [i for i in pantry.ingredients if i.name == name]
             if len(same_ingredients) > 0:
-                pantry.ingredients.append(same_ingredients[0])
+                recipe.ingredients.append(same_ingredients[0])
         else:
             break
 
@@ -109,6 +114,8 @@ def add_item(cookbook):
             recipe.instructions.append(s)
         else:
             break
+
+    cookbook.recipes.append(recipe)
 
 
 def editcookbook():

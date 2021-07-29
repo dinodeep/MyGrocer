@@ -34,6 +34,9 @@ def remove_item(pantry):
 
     clear()
 
+    if len(pantry.ingredients) == 0:
+        return
+
     print("===============================================")
     for idx, ingredient in enumerate(pantry.ingredients):
         print(f"{(idx + 1):>2}. {ingredient}")
@@ -53,7 +56,7 @@ def remove_item(pantry):
         ingredient = pantry.ingredients[idx]
         pantry.remove(ingredient)
 
-        remove_item()
+        remove_item(pantry)
 
 
 def add_item(pantry):
@@ -72,7 +75,7 @@ def add_item(pantry):
         ingredient = Ingredient(command)
         pantry.add(ingredient)
 
-        add_item()
+        add_item(pantry)
 
 
 def editpantry():
