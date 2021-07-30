@@ -181,7 +181,8 @@ class Grocer:
         if len(plan) == 0:
             return
 
-        # TODO: update the cookbook to new dates
+        for recipe, date in plan:
+            recipe.last_eaten = date
         self.cookbook.save()
 
         # pp the chosen data to files
