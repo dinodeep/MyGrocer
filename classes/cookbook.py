@@ -61,5 +61,9 @@ class Cookbook:
 
     def interact(self):
         ''' start interaction sim with cookbook '''
-        lv = ListViewer(self.recipes, self.name)
-        lv.interact()
+        if len(self.recipes) > 0:
+            lv = ListViewer(self.recipes, self.name)
+            lv.interact()
+        else:
+            print("No recipes to view")
+            input("Press enter to continue")
