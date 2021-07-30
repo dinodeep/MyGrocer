@@ -79,9 +79,7 @@ def add_item(pantry):
         add_item(pantry)
 
 
-def editpantry(pantry_file):
-    # load pantry with JSON file to change
-    pantry = Pantry(pantry_file)
+def editpantry(pantry):
 
     # while loop asking for edit
     # make edit, break if necessary
@@ -101,5 +99,7 @@ def editpantry(pantry_file):
     pantry.save()
 
 
+# load pantry with JSON file to change
 pantry_file = input("Enter the pantry file: ")
-editpantry(pantry_file)
+pantry = Pantry(pantry_file)
+editpantry(pantry)

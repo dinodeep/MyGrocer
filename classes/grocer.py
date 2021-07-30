@@ -182,6 +182,7 @@ class Grocer:
             return
 
         # TODO: update the cookbook to new dates
+        self.cookbook.save()
 
         # pp the chosen data to files
         self.write_plan(recipes_file, plan)
