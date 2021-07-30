@@ -99,7 +99,8 @@ def editpantry(pantry):
     pantry.save()
 
 
-# load pantry with JSON file to change
-pantry_file = input("Enter the pantry file: ")
-pantry = Pantry(pantry_file)
-editpantry(pantry)
+if __name__ == "__main__":
+    # load pantry with JSON file to change
+    pantry_file = input("Enter the pantry file: ")
+    pantry = Pantry(pantry_file)
+    editpantry(pantry)

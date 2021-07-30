@@ -8,7 +8,7 @@ from edit.editcookbook import editcookbook
 import os
 
 
-def display(pantry, cookbook):
+def display(cookbook, pantry):
     os.system("clear")
     print("========================================================")
     print("MyGrocer")
@@ -41,7 +41,7 @@ def main():
 
     # enter infinite loop
     while True:
-        display(pantry, cookbook)
+        display(cookbook, pantry)
         prompt()
         command = input("Enter command: ").strip().lower()
 
@@ -65,4 +65,5 @@ def main():
             break
 
 
-main()
+if __name__ == "__main__":
+    main()

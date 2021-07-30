@@ -135,6 +135,7 @@ def editcookbook(cookbook, pantry):
     cookbook.save()
 
 
-pantry = Pantry(input("Enter the pantry file: "))
-cookbook = Cookbook(input("Enter the c file: "))
-editcookbook(cookbook, pantry)
+if __name__ == "__main__":
+    pantry = Pantry(input("Enter the pantry file: "))
+    cookbook = Cookbook(input("Enter the cookbook file: "))
+    editcookbook(cookbook, pantry)
