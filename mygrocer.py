@@ -2,6 +2,9 @@ from classes.pantry import Pantry
 from classes.cookbook import Cookbook
 from classes.grocer import Grocer
 
+from edit.editpantry import editpantry
+from edit.editcookbook import editcookbook
+
 import os
 
 
@@ -33,7 +36,7 @@ def main():
     cookbook_file = input("Enter cookbook JSON file: ")
 
     pantry = Pantry(pantry_file)
-    cookbook = Cookbook(pantry_file)
+    cookbook = Cookbook(cookbook_file)
     grocer = Grocer(cookbook)
 
     # enter infinite loop
@@ -43,15 +46,21 @@ def main():
         command = input("Enter command: ").strip().lower()
 
         if command == "create list":
-            pass
+            recipes_file = input("Enter text file to store recipes: ")
+            grocery_list_file = input("Enter text file to store grocery list: ")
+            grocer.plan(recipes_file, grocery_list_file)
         elif command == "view pantry":
-            pass
+            os.system("clear")
+            print(pantry)
+            print()
+            input("Press enter to stop viewing")
         elif command == "interact cookbook":
-            pass
+            os.system("clear")
+            cookbook.interact()
         elif command == "edit pantry":
-            pass
+            editpantry(pantry)
         elif command == "edit cookbook":
-            pass
+            editcookbook(cookbook, pantry)
         elif command == "quit":
             break
 
