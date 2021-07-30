@@ -49,15 +49,17 @@ def remove_item(pantry):
     print("stop     - stop removing ingredients")
     print("===============================================")
 
-    command = input("Enter command: ").strip().lower()
-    if command == "stop":
-        return
-    else:
-        idx = int(command) - 1
-        ingredient = pantry.ingredients[idx]
-        pantry.remove(ingredient)
+    while True:
+        command = input("Enter command: ").strip().lower()
+        if command == "stop":
+            return
+        elif command.isdigit():
+            idx = int(command) - 1
+            ingredient = pantry.ingredients[idx]
+            pantry.remove(ingredient)
 
-        remove_item(pantry)
+            remove_item(pantry)
+            return
 
 
 def add_item(pantry):

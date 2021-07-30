@@ -58,15 +58,17 @@ def remove_item(cookbook):
     print("stop     - stop removing recipes from cookbook")
     print("===============================================")
 
-    command = input("Enter command: ").strip().lower()
-    if command == "stop":
-        return
-    else:
-        idx = int(command) - 1
-        ingredient = cookbook.recipes[idx]
-        cookbook.remove(ingredient)
+    while True:
+        command = input("Enter command: ").strip().lower()
+        if command == "stop":
+            return
+        elif command.isdigit():
+            idx = int(command) - 1
+            ingredient = cookbook.recipes[idx]
+            cookbook.remove(ingredient)
 
-        remove_item(cookbook)
+            remove_item(cookbook)
+            return
 
 
 def add_item(cookbook, pantry):
