@@ -1,4 +1,4 @@
-# MyGrocer
+# MyGrocer 🫐
 ### Mange your cooking life
 
 ----------------------------------------
@@ -18,7 +18,7 @@ Clone this repository and run `./mygrocer` in the repository. Enter two files wh
 
 ----------------------------------------
 
-## Source
+## Source </>
 The source code for this application was created in `Python3` and compiled into the `mygrocer` executable using `PyInstaller`. The code consists of various classes for creating, storing, and editing ingredients, recipes, pantries, cookbooks, and more. 
 
 Currently, this project just finished its initial phase; however, there are other plans to enhance this application to make it more usable. Some of which include:
