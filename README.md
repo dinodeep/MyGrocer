@@ -29,3 +29,5 @@ Currently, this project just finished its initial phase; however, there are othe
 - [ ] adding recommendations to the grocery list creator to recommend recipes based on ingredient similarity and more
 - [ ] implementing ingredient and recipe quantities to allow for quantities in grocery lists
 - [ ] creating a grocery list filter so that users can safely ignore recipes they typically always have like salt or butter
+
+Feel free to contribute by forking and makig a pull request!
