@@ -1,6 +1,6 @@
 
-from classes.ingredient import Ingredient
-from classes.pantry import Pantry
+from src.classes.ingredient import Ingredient
+from src.classes.pantry import Pantry
 
 import os
 

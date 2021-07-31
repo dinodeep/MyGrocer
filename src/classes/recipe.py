@@ -2,7 +2,7 @@
 recipe.py implements the recipe class
 '''
 
-from classes.ingredient import Ingredient
+from src.classes.ingredient import Ingredient
 import datetime
 
 

@@ -3,12 +3,11 @@ this file implements functions for generating random
 ingredients, recipes, pantries, and cookbooks
 '''
 
-from classes.ingredient import Ingredient
-from classes.recipe import Recipe
-from classes.pantry import Pantry
-from classes.cookbook import Cookbook
+from src.classes.ingredient import Ingredient
+from src.classes.recipe import Recipe
+from src.classes.pantry import Pantry
+from src.classes.cookbook import Cookbook
 
-import os
 import random
 import string
 

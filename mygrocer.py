@@ -1,9 +1,9 @@
-from classes.pantry import Pantry
-from classes.cookbook import Cookbook
-from classes.grocer import Grocer
+from src.classes.pantry import Pantry
+from src.classes.cookbook import Cookbook
+from src.classes.grocer import Grocer
 
-from edit.editpantry import editpantry
-from edit.editcookbook import editcookbook
+from src.edit.editpantry import editpantry
+from src.edit.editcookbook import editcookbook
 
 import os
 

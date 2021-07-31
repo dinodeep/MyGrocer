@@ -2,7 +2,7 @@
 pantry.py implements the pantry class that allows for device storage of a list of ingredients
 '''
 
-from classes.ingredient import Ingredient
+from src.classes.ingredient import Ingredient
 
 import json
 import os
