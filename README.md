@@ -1,5 +1,5 @@
-# MyGrocer 🫐
-### Mange your cooking life
+# MyGrocer 🥗
+### Mange your cooking life 🥄
 
 ----------------------------------------
 
@@ -9,7 +9,7 @@
 3. track when you've last eaten a specific meal
 4. create a grocery list and an eating schedule for meals
 
-## Use
+## Use 🥣
 Clone this repository and run `./mygrocer` in the repository. Enter two files where you want to store your *ingredients* and *recipes* into your virtual pantry and cookbook respectively. Then, an interface will pop up to edit these files. 
 
 - Start with *editing the pantry* by giving it a name and filling it with ingredients. 
