@@ -1,5 +1,5 @@
 # MyGrocer 🥗
-### Mange your cooking life 🥄
+### Manage your cooking life 🥄
 
 ----------------------------------------
 
