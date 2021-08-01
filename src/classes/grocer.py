@@ -2,7 +2,7 @@
 grocer.py implements the Grocer class
 '''
 
-from src.classes.cookbook import Cookbook
+from classes.cookbook import Cookbook
 
 import datetime
 import os

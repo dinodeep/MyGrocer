@@ -3,8 +3,8 @@ cookbook.py implements the Cookbook class which allows for storage, management,
 and interaction with recipes
 '''
 
-from src.classes.recipe import Recipe
-from src.classes.list_viewer import ListViewer
+from classes.recipe import Recipe
+from classes.list_viewer import ListViewer
 
 import json
 import os

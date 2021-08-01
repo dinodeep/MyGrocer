@@ -1,7 +1,7 @@
-from src.classes.pantry import Pantry
-from src.classes.recipe import Recipe
-from src.classes.cookbook import Cookbook
-from src.classes.grocer import isisoformat
+from classes.pantry import Pantry
+from classes.recipe import Recipe
+from classes.cookbook import Cookbook
+from classes.grocer import isisoformat
 
 import datetime
 import os
