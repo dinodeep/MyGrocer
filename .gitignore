@@ -2,3 +2,6 @@
 __pycache__/
 *.py[cod]
 build/
+
+# personal recipe storage
+personal/
