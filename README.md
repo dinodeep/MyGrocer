@@ -12,6 +12,8 @@
 ## Use 🥣
 Clone this repository and run `./mygrocer` in the repository. Enter two files where you want to store your *ingredients* and *recipes* into your virtual pantry and cookbook respectively. Then, an interface will pop up to edit these files. 
 
+**Note:** `Python3` is required to be able to run and use **MyGrocer**
+
 - Start with *editing the pantry* by giving it a name and filling it with ingredients. 
 - Then, you can edit the cookbook by filling it with recipes. These recipes can only have ingredients that you store from your pantry. 
 - Finally, once you've populated the cookbook with recipe, create a grocery list. You will need to provide two files for storing the *plan* and the *grocery list*.
